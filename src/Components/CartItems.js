@@ -2,7 +2,10 @@ import React from 'react'
 import CartItem from './CartItem'
 
 const cartItems = (props) => {
-  let cartItemList = props.items.map(item => <CartItem key={item.id} item={item} />)
+  let cartItemList = props.products.map(product => {
+    let item = props.items.filter(item => item.product_id === product.id)
+    return <CartItem key={product.id} product={product} item={item[0]} />
+  })
 
   return (
     <div className="container">
