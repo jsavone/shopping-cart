@@ -16,7 +16,6 @@ class AddItem extends Component {
   }
 
   render() {
-    console.log(this.state)
     let productDrop = this.props.products.map(product => <ItemDropdown key={product.id} product={product} />)
 
     return (
