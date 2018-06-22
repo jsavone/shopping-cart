@@ -1,10 +1,11 @@
 import React from 'react'
 import CartItem from './CartItem'
+import AddItem from './AddItem'
 
 const cartItems = (props) => {
-  let cartItemList = props.products.map(product => {
-    let item = props.items.filter(item => item.product_id === product.id)
-    return <CartItem key={product.id} product={product} item={item[0]} />
+  let cartItemList = props.items.map(item => {
+    let product = props.products.filter(product => item.product_id === product.id)
+    return <CartItem key={item.id} product={product[0]} item={item} />
   })
 
   return (
@@ -20,6 +21,7 @@ const cartItems = (props) => {
         </div>
         {cartItemList}
       </div>
+      <AddItem createItem={props.createItem}products={props.products}/>
     </div>
   )
 }

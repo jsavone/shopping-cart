@@ -19,12 +19,35 @@ class App extends Component {
     this.setState({products: productsJson, items: itemsJson})
   }
 
+  createItem = async (quantity, itemId) => {
+
+    let addedItem = {
+      "product_id": Number(itemId),
+      "quantity": Number(quantity),
+      "id": this.state.items.length+1
+    }
+
+    const itemResponse = await fetch('http://localhost:8082/api/items', {
+      method: 'POST',
+      body: JSON.stringify(addedItem),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      }
+    })
+
+    const itemJson = await itemResponse.json()
+    console.log("ItemJson :", itemJson)
+
+    this.setState({items: [...this.state.items, itemJson]})
+  }
+
   render() {
 
     return (
       <div className="App">
         <CartHeader />
-        <CartItems products={this.state.products} items={this.state.items}/>
+        <CartItems createItem={this.createItem} products={this.state.products} items={this.state.items}/>
         <CartFooter copyright={'2018'} />
       </div>
     );
