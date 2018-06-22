@@ -37,7 +37,6 @@ class App extends Component {
     })
 
     const itemJson = await itemResponse.json()
-    console.log("ItemJson :", itemJson)
 
     this.setState({items: [...this.state.items, itemJson]})
   }
