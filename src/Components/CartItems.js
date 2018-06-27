@@ -9,8 +9,7 @@ const cartItems = (props) => {
     cartTotal+=(product[0].priceInCents*item.quantity)
     return <CartItem key={item.id} product={product[0]} item={item} />
   })
-  cartTotal = cartTotal.toString().split('')
-  cartTotal.splice(cartTotal.length-2,0,'.')
+  cartTotal = (cartTotal/100).toFixed(2)
   return (
     <div className="container">
       <h1>Cart Items</h1>
